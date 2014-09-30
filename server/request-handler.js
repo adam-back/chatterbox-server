@@ -4,6 +4,8 @@
  * You'll have to figure out a way to export this function from
  * this file and include it in basic-server.js so that it actually works.
  * *Hint* Check out the node module documentation at http://nodejs.org/api/modules.html. */
+var fs = require('fs');
+
 var writeToFile = function(data) {
   console.log('inside');
   fs.appendFile('messages.txt', data, function (err) {
@@ -67,6 +69,7 @@ exports.handleRequest = function(request, response) {
       });
       request.on('end', function(){
         exports.messageStorage.unshift(JSON.parse(data));
+        writeToFile(JSON.stringify({results: exports.messageStorage}));
         response.writeHead(postSuccessCode, headers);
         response.end(JSON.stringify({results: exports.messageStorage}));
       });
@@ -79,6 +82,7 @@ exports.handleRequest = function(request, response) {
 
       request.on('end', function(){
         exports.messageStorage.unshift(JSON.parse(data));
+        writeToFile(JSON.stringify({results: exports.messageStorage}));
         response.writeHead(postSuccessCode, headers);
         response.end(JSON.stringify({results: exports.messageStorage}));
       });
