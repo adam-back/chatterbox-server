@@ -5,6 +5,7 @@
  * this file and include it in basic-server.js so that it actually works.
  * *Hint* Check out the node module documentation at http://nodejs.org/api/modules.html. */
 var writeToFile = function(data) {
+  console.log('inside');
   fs.appendFile('messages.txt', data, function (err) {
     if (err) {
       console.log("Error: " + err);
@@ -75,6 +76,7 @@ exports.handleRequest = function(request, response) {
       request.on('data', function(chunk){
         data += chunk;
       });
+
       request.on('end', function(){
         exports.messageStorage.unshift(JSON.parse(data));
         response.writeHead(postSuccessCode, headers);
