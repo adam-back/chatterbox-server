@@ -10,9 +10,18 @@ exports.handleRequest = function(request, response) {
   var headers = defaultCorsHeaders;
 
     if(request.url === '/classes/messages') {
-      headers['Content-Type'] = "text/plain";
-      response.writeHead(statusCode, headers);
-      response.end( JSON.stringify( {results: exports.messages} ) );
+      switch(request.method) {
+        case 'GET': 
+          headers['Content-Type'] = "text/plain";
+          response.writeHead(statusCode, headers);
+          response.end( JSON.stringify( {results: exports.messages} ) );
+          break;
+        case 'POST':
+          headers['Content-Type'] = "text/plain";
+          response.writeHead(201, headers);
+          response.end();
+          break;
+      }
     }
 };
 
