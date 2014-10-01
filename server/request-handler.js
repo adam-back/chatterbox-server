@@ -1,15 +1,19 @@
+var serverResponse = function(response, code) {
+
+};
+
 exports.handleRequest = function(request, response) {
 
   console.log("Serving request type " + request.method + " for url " + request.url);
 
   var statusCode = 200;
-
-
   var headers = defaultCorsHeaders;
 
-  headers['Content-Type'] = "text/plain";
-  response.writeHead(statusCode, headers);
-  response.end( JSON.stringify( {results: exports.messages} ) );
+    if(request.url === '/classes/messages') {
+      headers['Content-Type'] = "text/plain";
+      response.writeHead(statusCode, headers);
+      response.end( JSON.stringify( {results: exports.messages} ) );
+    }
 };
 
 var defaultCorsHeaders = {
