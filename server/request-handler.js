@@ -19,9 +19,15 @@ exports.handleRequest = function(request, response) {
         case 'POST':
           headers['Content-Type'] = "text/plain";
           response.writeHead(201, headers);
-          response.end();
+          exports.messages.unshift(request);
+          console.log(exports.messages);
+          response.end(JSON.stringify( {results: export.messages} ) );
           break;
       }
+    } else {
+      headers['Content-Type'] = "text/plain";
+      response.writeHead(404, headers);
+      response.end();
     }
 };
 
