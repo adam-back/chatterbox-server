@@ -9,7 +9,7 @@ exports.handleRequest = function(request, response) {
 
   headers['Content-Type'] = "text/plain";
   response.writeHead(statusCode, headers);
-  response.end("Hello, World!");
+  response.end( JSON.stringify( {results: exports.messages} ) );
 };
 
 var defaultCorsHeaders = {
@@ -18,3 +18,5 @@ var defaultCorsHeaders = {
   "access-control-allow-headers": "content-type, accept",
   "access-control-max-age": 10 // Seconds.
 };
+
+exports.messages = [];
