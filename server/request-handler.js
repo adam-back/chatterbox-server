@@ -20,8 +20,9 @@ exports.handleRequest = function(request, response) {
           headers['Content-Type'] = "text/plain";
           response.writeHead(201, headers);
           exports.messages.unshift(request);
-          console.log(exports.messages);
-          response.end(JSON.stringify( {results: export.messages} ) );
+          console.log(exports.messages);  
+          // response.end(JSON.stringify( {results: exports.messages} ) );
+          response.end();
           break;
       }
     } else {
