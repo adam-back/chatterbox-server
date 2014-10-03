@@ -18,9 +18,21 @@ exports.handleRequest = function(request, response) {
           break;
         case 'POST':
           headers['Content-Type'] = "text/plain";
-          response.writeHead(201, headers);
-          exports.messages.unshift(request.json);
-          response.end(JSON.stringify( {results: exports.messages} ) );
+          var data = "";
+          request.on('data', function(chunk) {
+            data += chunk;
+          });
+
+          request.on('end', function() {
+            exports.messages.unshift( JSON.parse(data) );
+            response.writeHead(201, headers);
+            response.end(JSON.stringify( {results: exports.messages} ) );
+          });
+          // console.log( request.message );
+          // console.log( request.url );
+          // console.log( request.text );
+          // console.log( request.username );
+
           break;
       }
     } else {
