@@ -76,9 +76,11 @@ var app = {
     // inserts the new messages into the existing message list
     var messages = data.results;
     // app.clearMessages();
-    for (var i = 0; i < 10; i++) {
-      app.addMessage(messages[i]);
-      app.newRoom(messages[i]);
+    if(messages.length > 0) {
+      for (var i = 0; i < (Math.min(10, messages.length)); i++) {
+        app.addMessage(messages[i]);
+        app.newRoom(messages[i]);
+      }
     }
   },
 
