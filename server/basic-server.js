@@ -4,7 +4,6 @@ var handle = require('./request-handler.js');
 var path = require('path');
 var url = require('url');
 
-
 var port = 3000;
 
 var ip = "127.0.0.1";

@@ -1,4 +1,3 @@
-
 var returnResponse = function(response, data, code) {
     response.writeHead(code, defaultCorsHeaders);
     response.end(data);
@@ -12,6 +11,8 @@ var postData = function(request, callback) {
   request.on('end', function(){
     callback(data);
   });
+
+var serverResponse = function(response, code) {
 };
 
 exports.handleRequest = function(request, response) {
@@ -38,7 +39,6 @@ exports.handleRequest = function(request, response) {
       break;
     default:
       returnResponse(response, null, 404);
-  }
 };
 
 var defaultCorsHeaders = {
@@ -49,4 +49,8 @@ var defaultCorsHeaders = {
   "content-type": "application/json"
 };
 
+<<<<<<< HEAD
 exports.messageStorage = [];
+=======
+exports.messages = [];
+>>>>>>> explore
